@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 23rd Birthday babycait! ✨</title>
+
+  <!-- Cute & Playful Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Gaegu:wght@400;700&family=Sniglet:wght@800&display=swap" rel="stylesheet">
+
+  <!-- Canvas Confetti CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+  <style>
+    :root {
+      --bg-cream: #FFFDF4;
+      --butter-yellow: #FEF08A;
+      --sunshine-yellow: #FDE047;
+      --deep-yellow: #CA8A04;
+      --card-white: #FFFFFF;
+      --text-main: #4A3B2C;
+      --text-muted: #786C5E;
+      --tape-color: rgba(254, 240, 138, 0.7);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-cream);
+      color: var(--text-main);
+      font-family: 'Fredoka', cursive, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(#FDE047 1.5px, transparent 1.5px),
+        radial-gradient(#FEF08A 1.5px, #FFFDF4 1.5px);
+      background-size: 40px 40px;
+      background-position: 0 0, 20px 20px;
+      padding: 2.5rem 1rem 5rem 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    /* Cute Header Badge */
+    .badge {
+      background: #FEF9C3;
+      border: 2px dashed #EAB308;
+      color: #854D0E;
+      padding: 8px 22px;
+      border-radius: 9999px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 12px rgba(234, 179, 8, 0.15);
+      animation: gentleWiggle 3s ease-in-out infinite;
+    }
+
+    @keyframes gentleWiggle {
+      0%, 100% { transform: rotate(0deg); }
+      25% { transform: rotate(-2deg); }
+      75% { transform: rotate(2deg); }
+    }
+
+    .title-banner {
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Sniglet', cursive;
+      font-size: clamp(2.5rem, 7vw, 4.2rem);
+      color: #D97706;
+      text-shadow: 3px 3px 0px #FEF08A, 6px 6px 0px rgba(254, 240, 138, 0.5);
+      line-height: 1.1;
+      margin-top: 0.5rem;
+    }
+
+    .subtitle {
+      font-family: 'Gaegu', cursive;
+      font-size: 1.7rem;
+      color: var(--text-muted);
+      margin-top: 0.4rem;
+    }
+
+    /* Interactive Audio Player Pill */
+    .audio-pill {
+      background: var(--card-white);
+      border: 2px solid #FDE047;
+      border-radius: 50px;
+      padding: 8px 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 6px 16px rgba(234, 179, 8, 0.15);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .audio-pill:hover {
+      transform: scale(1.04);
+      border-color: #EAB308;
+      box-shadow: 0 8px 20px rgba(234, 179, 8, 0.25);
+    }
+
+    .music-btn {
+      background: #FEF08A;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #854D0E;
+    }
+
+    .audio-pill span {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #854D0E;
+    }
+
+    /* Cake Card Section */
+    .cake-card {
+      background: var(--card-white);
+      border-radius: 28px;
+      border: 3px solid #FEF08A;
+      padding: 2.2rem 1.5rem;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 14px 28px rgba(202, 138, 4, 0.08);
+      position: relative;
+    }
+
+    .cake-interactive {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      margin: 1.2rem 0;
+      padding: 10px 20px;
+      border-radius: 20px;
+      transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .cake-interactive:hover {
+      transform: scale(1.08);
+    }
+
+    .candles-row {
+      display: flex;
+      gap: 22px;
+      justify-content: center;
+      margin-bottom: 2px;
+    }
+
+    .candle {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    .flame {
+      width: 14px;
+      height: 22px;
+      background: radial-gradient(circle at 50% 80%, #FEF08A, #F59E0B, #EA580C);
+      border-radius: 50% 50% 35% 35%;
+      box-shadow: 0 0 14px #F59E0B, 0 0 25px #FEF08A;
+      animation: flicker 1.2s infinite alternate ease-in-out;
+      transform-origin: center bottom;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .flame.blown {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.2);
+    }
+
+    @keyframes flicker {
+      0% { transform: rotate(-3deg) scale(0.98); }
+      100% { transform: rotate(3deg) scale(1.04); }
+    }
+
+    .candle-stick {
+      width: 10px;
+      height: 30px;
+      background: repeating-linear-gradient(45deg, #FFFDF4, #FFFDF4 6px, #FDE047 6px, #FDE047 12px);
+      border-radius: 4px;
+      border: 1px solid #EAB308;
+    }
+
+    .cake-tier {
+      width: 130px;
+      height: 48px;
+      background: #FEF08A;
+      border: 3px solid #EAB308;
+      border-radius: 14px 14px 8px 8px;
+      position: relative;
+      display: flex;
+      justify-content: space-around;
+      align-items: flex-start;
+      padding-top: 4px;
+      box-shadow: inset 0 -6px 0 rgba(0,0,0,0.06);
+    }
+
+    .frosting-drip {
+      width: 18px;
+      height: 18px;
+      background: #FFF;
+      border-radius: 50%;
+      border-bottom: 2px solid #EAB308;
+    }
+
+    .cake-prompt {
+      font-family: 'Gaegu', cursive;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #B45309;
+      margin-top: 0.4rem;
+    }
+
+    /* 3 Polaroids Showcase */
+    .gallery-section {
+      width: 100%;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Sniglet', cursive;
+      font-size: 2.2rem;
+      color: #B45309;
+      margin-bottom: 1.5rem;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.8rem;
+      width: 100%;
+    }
+
+    .polaroid {
+      background: var(--card-white);
+      padding: 14px 14px 22px 14px;
+      border-radius: 16px;
+      box-shadow: 0 10px 22px rgba(202, 138, 4, 0.12);
+      border: 2px solid #FEF08A;
+      position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+    }
+
+    .polaroid:nth-child(1) { transform: rotate(-2.5deg); }
+    .polaroid:nth-child(2) { transform: rotate(1.5deg); }
+    .polaroid:nth-child(3) { transform: rotate(-1.5deg); }
+
+    .polaroid:hover {
+      transform: translateY(-8px) rotate(0deg) scale(1.02);
+      box-shadow: 0 16px 32px rgba(202, 138, 4, 0.2);
+    }
+
+    /* Washi Tape Accent */
+    .washi-tape {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 22px;
+      background: var(--tape-color);
+      border-left: 2px dashed rgba(202, 138, 4, 0.3);
+      border-right: 2px dashed rgba(202, 138, 4, 0.3);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+      z-index: 2;
+    }
+
+    .photo-wrapper {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #FEF9C3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border: 1px solid #FEF08A;
+    }
+
+    .photo-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Cute fallback if images aren't present yet */
+    .photo-fallback {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      color: #A16207;
+      text-align: center;
+      gap: 6px;
+    }
+
+    .photo-fallback .camera-icon {
+      font-size: 2.2rem;
+    }
+
+    .photo-fallback code {
+      font-size: 0.85rem;
+      background: rgba(254, 240, 138, 0.6);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-family: monospace;
+    }
+
+    .polaroid-caption {
+      font-family: 'Gaegu', cursive;
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: #713F12;
+      margin-top: 14px;
+      line-height: 1.2;
+    }
+
+    /* Cute Heartfelt Letter / Message Box */
+    .letter-card {
+      background: var(--card-white);
+      border: 3px solid #FDE047;
+      border-radius: 26px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      box-shadow: 0 12px 28px rgba(202, 138, 4, 0.08);
+      position: relative;
+      background-image: repeating-linear-gradient(to bottom, transparent 0px, transparent 31px, #FEF9C3 32px);
+      line-height: 32px;
+    }
+
+    .letter-title {
+      font-family: 'Sniglet', cursive;
+      font-size: 1.8rem;
+      color: #B45309;
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .letter-body {
+      font-size: 1.15rem;
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .letter-signoff {
+      font-family: 'Gaegu', cursive;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #D97706;
+      margin-top: 1.8rem;
+      text-align: right;
+    }
+
+    /* Blast Confetti Button */
+    .btn-blast {
+      background: linear-gradient(135deg, #FDE047, #F59E0B);
+      color: #451A03;
+      border: none;
+      padding: 16px 36px;
+      font-family: 'Sniglet', cursive;
+      font-size: 1.4rem;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(245, 158, 11, 0.35);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-blast:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 30px rgba(245, 158, 11, 0.45);
+    }
+
+    .btn-blast:active {
+      transform: translateY(2px) scale(0.98);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Playful Badge -->
+    <div class="badge">
+      <span>🌼</span> Special Celebration Day <span>✨</span>
+    </div>
+
+    <!-- Title Banner -->
+    <div class="title-banner">
+      <h1>Happy Birthday, babycait! 💛</h1>
+      <p class="subtitle">Wishing you the sweetest, brightest 23rd birthday!</p>
+    </div>
+
+    <!-- Cute Music Box Pill -->
+    <div class="audio-pill" id="audioToggle">
+      <button class="music-btn" id="playBtn">▶</button>
+      <span id="audioLabel">Play cute music box 🎵</span>
+    </div>
+
+    <!-- Optional audio element if you have a local MP3 file -->
+    <audio id="customAudio" loop preload="none">
+      <source src="birthday.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Interactive Birthday Cake -->
+    <div class="cake-card">
+      <p style="font-size: 1.15rem; font-weight: 600; color: #854D0E;">Make a wish and blow out the candles!</p>
+      
+      <div class="cake-interactive" id="cakeBtn" title="Click to blow out the candles!">
+        <div class="candles-row">
+          <div class="candle"><div class="flame" id="flame1"></div><div class="candle-stick"></div></div>
+          <div class="candle"><div class="flame" id="flame2"></div><div class="candle-stick"></div></div>
+          <div class="candle"><div class="flame" id="flame3"></div><div class="candle-stick"></div></div>
+        </div>
+        <div class="cake-tier">
+          <div class="frosting-drip"></div>
+          <div class="frosting-drip"></div>
+          <div class="frosting-drip"></div>
+          <div class="frosting-drip"></div>
+        </div>
+      </div>
+
+      <div class="cake-prompt" id="cakeStatus">✨ Click the candles to blow them out! ✨</div>
+    </div>
+
+    <!-- 3 Strictly Limited Photo Polaroids -->
+    <section class="gallery-section">
+      <h2 class="section-title">Sweetest Memories 📸</h2>
+      
+      <div class="photo-grid">
+
+        <!-- ========================================== -->
+        <!-- PHOTO 1: EDIT FILENAME / CAPTION BELOW    -->
+        <!-- ========================================== -->
+        <div class="polaroid" onclick="triggerMiniConfetti(event)">
+          <div class="washi-tape"></div>
+          <div class="photo-wrapper">
+            <img src="photo1.jpg" alt="Memory 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="photo-fallback" style="display: none;">
+              <span class="camera-icon">🌻</span>
+              <strong>Replace photo</strong>
+              <code>photo1.jpg</code>
+            </div>
+          </div>
+          <p class="polaroid-caption">me and my fav classmate:D ✨</p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PHOTO 2: EDIT FILENAME / CAPTION BELOW    -->
+        <!-- ========================================== -->
+        <div class="polaroid" onclick="triggerMiniConfetti(event)">
+          <div class="washi-tape"></div>
+          <div class="photo-wrapper">
+            <img src="photo2.jpg" alt="Memory 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="photo-fallback" style="display: none;">
+              <span class="camera-icon">☀️</span>
+              <strong>Replace photo</strong>
+              <code>photo2.jpg</code>
+            </div>
+          </div>
+          <p class="polaroid-caption">papic ako, crushey 💛</p>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- PHOTO 3: EDIT FILENAME / CAPTION BELOW    -->
+        <!-- ========================================== -->
+        <div class="polaroid" onclick="triggerMiniConfetti(event)">
+          <div class="washi-tape"></div>
+          <div class="photo-wrapper">
+            <img src="photo3.jpg" alt="Memory 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+            <div class="photo-fallback" style="display: none;">
+              <span class="camera-icon">🍯</span>
+              <strong>Replace photo</strong>
+              <code>photo3.jpg</code>
+            </div>
+          </div>
+          <p class="polaroid-caption">date with my new found friend 🌼</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- EDITABLE SHORT MESSAGE CARD               -->
+    <!-- ========================================== -->
+    <div class="letter-card">
+      <h3 class="letter-title">Dearest babycait, 💌</h3>
+      
+      <div class="letter-body">
+        Baby, I just wanna say na I’m very thankful na kasama moko in celebrating your 23rd birthday:) 
+Thank you for not giving up on me ket na palagi kita inaaway. I can’t assure you na hindi na kita aawayin pero I promise that I’d be mindful of my immature actions like pagiging seloso and mainitin ang ulo. 
+ I’ll always be cheering for you from and afar and through chats:D Hoping that we could celebrate more of your birthdays together outside soon when we graduate:) 
+I promise I’ll do better for us and won't give up so easily, just like you hold on to our relationship. (di tulad ko) Happy birthday, baby! 
+Iloveyousomuch:) ☀️💛
+      </div>
+
+      <div class="letter-signoff">
+        Always yours, <br>
+        - your bby :) 💛
+      </div>
+    </div>
+
+    <!-- Big Confetti Blast Button -->
+    <button class="btn-blast" id="confettiBtn">
+      <span>🎉</span> Pop Confetti Shower! <span>✨</span>
+    </button>
+
+  </div>
+
+  <script>
+    /* ========================================================
+       1. CUTE MUSIC-BOX SYNTHESIZER (Web Audio API)
+       Plays a soft, high-pitched chime tune of Happy Birthday
+       without needing any external sound files!
+    ======================================================== */
+    let audioCtx = null;
+    let isPlaying = false;
+    let melodyTimeout = null;
+
+    // Happy Birthday note frequencies (Hz) & relative durations
+    const notes = {
+      C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23,
+      G4: 392.00, A4: 440.00, B4: 493.88, C5: 523.25,
+      D5: 587.33
+    };
+
+    const tune = [
+      { f: notes.C4 * 1.5, d: 0.35 },
+      { f: notes.C4 * 1.5, d: 0.35 },
+      { f: notes.D4 * 1.5, d: 0.7 },
+      { f: notes.C4 * 1.5, d: 0.7 },
+      { f: notes.F4 * 1.5, d: 0.7 },
+      { f: notes.E4 * 1.5, d: 1.2 },
+
+      { f: notes.C4 * 1.5, d: 0.35 },
+      { f: notes.C4 * 1.5, d: 0.35 },
+      { f: notes.D4 * 1.5, d: 0.7 },
+      { f: notes.C4 * 1.5, d: 0.7 },
+      { f: notes.G4 * 1.5, d: 0.7 },
+      { f: notes.F4 * 1.5, d: 1.2 },
+
+      { f: notes.C4 * 1.5, d: 0.35 },
+      { f: notes.C4 * 1.5, d: 0.35 },
+      { f: notes.C5 * 1.5, d: 0.7 },
+      { f: notes.A4 * 1.5, d: 0.7 },
+      { f: notes.F4 * 1.5, d: 0.7 },
+      { f: notes.E4 * 1.5, d: 0.7 },
+      { f: notes.D4 * 1.5, d: 1.0 },
+
+      { f: notes.B4 * 1.5, d: 0.35 },
+      { f: notes.B4 * 1.5, d: 0.35 },
+      { f: notes.A4 * 1.5, d: 0.7 },
+      { f: notes.F4 * 1.5, d: 0.7 },
+      { f: notes.G4 * 1.5, d: 0.7 },
+      { f: notes.F4 * 1.5, d: 1.4 }
+    ];
+
+    function playChime(freq, duration) {
+      if (!audioCtx) return;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = 'sine'; // pure sweet music-box tone
+      osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+      gain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.2, audioCtx.currentTime + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + duration);
+    }
+
+    function playMelodyLoop(index = 0) {
+      if (!isPlaying) return;
+      if (index >= tune.length) {
+        melodyTimeout = setTimeout(() => playMelodyLoop(0), 1200);
+        return;
+      }
+      playChime(tune[index].f, tune[index].d * 0.9);
+      melodyTimeout = setTimeout(() => {
+        playMelodyLoop(index + 1);
+      }, tune[index].d * 420);
+    }
+
+    const audioToggle = document.getElementById('audioToggle');
+    const playBtn = document.getElementById('playBtn');
+    const audioLabel = document.getElementById('audioLabel');
+    const customAudio = document.getElementById('customAudio');
+
+    audioToggle.addEventListener('click', () => {
+      // Check if user has an actual birthday.mp3 file loaded
+      if (customAudio && customAudio.duration > 0 && !customAudio.paused) {
+        customAudio.pause();
+        playBtn.textContent = '▶';
+        audioLabel.textContent = 'Play cute music box 🎵';
+        return;
+      } else if (customAudio && customAudio.duration > 0) {
+        customAudio.play();
+        playBtn.textContent = '⏸';
+        audioLabel.textContent = 'Playing birthday song... 🎶';
+        return;
+      }
+
+      // Default: Web Audio API Synthesizer
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+
+      if (isPlaying) {
+        isPlaying = false;
+        clearTimeout(melodyTimeout);
+        playBtn.textContent = '▶';
+        audioLabel.textContent = 'Play cute music box 🎵';
+      } else {
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume();
+        }
+        isPlaying = true;
+        playBtn.textContent = '⏸';
+        audioLabel.textContent = 'Playing music box chime... 🎶';
+        playMelodyLoop(0);
+      }
+    });
+
+    /* ========================================================
+       2. CONFETTI CANNON EFFECTS
+       Tailored in warm gold, sunshine yellow, and cream white
+    ======================================================== */
+    const celebrationColors = ['#FEF08A', '#FDE047', '#F59E0B', '#FFFFFF', '#FBBF24'];
+
+    function fireBigConfetti() {
+      // Dual side cannons
+      confetti({
+        particleCount: 70,
+        angle: 60,
+        spread: 65,
+        origin: { x: 0, y: 0.75 },
+        colors: celebrationColors
+      });
+      confetti({
+        particleCount: 70,
+        angle: 120,
+        spread: 65,
+        origin: { x: 1, y: 0.75 },
+        colors: celebrationColors
+      });
+
+      // Center burst
+      setTimeout(() => {
+        confetti({
+          particleCount: 90,
+          spread: 100,
+          origin: { y: 0.6 },
+          colors: celebrationColors,
+          shapes: ['circle', 'square']
+        });
+      }, 200);
+    }
+
+    function triggerMiniConfetti(e) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = (rect.left + rect.width / 2) / window.innerWidth;
+      const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+      confetti({
+        particleCount: 35,
+        spread: 50,
+        origin: { x, y },
+        colors: celebrationColors,
+        scalar: 0.85
+      });
+    }
+
+    document.getElementById('confettiBtn').addEventListener('click', fireBigConfetti);
+
+    /* ========================================================
+       3. INTERACTIVE CANDLE BLOWING
+    ======================================================== */
+    let candlesBlown = false;
+    const cakeBtn = document.getElementById('cakeBtn');
+    const flames = [document.getElementById('flame1'), document.getElementById('flame2'), document.getElementById('flame3')];
+    const cakeStatus = document.getElementById('cakeStatus');
+
+    cakeBtn.addEventListener('click', () => {
+      if (!candlesBlown) {
+        flames.forEach(f => f.classList.add('blown'));
+        cakeStatus.textContent = '🎉 Yay! May all your wishes come true! 🎂✨';
+        cakeStatus.style.color = '#D97706';
+        candlesBlown = true;
+        fireBigConfetti();
+      } else {
+        // Relight candles if clicked again
+        flames.forEach(f => f.classList.remove('blown'));
+        cakeStatus.textContent = '✨ Click the candles to blow them out! ✨';
+        cakeStatus.style.color = '#B45309';
+        candlesBlown = false;
+      }
+    });
+
+    // Automatic warm welcome confetti pop on page load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        confetti({
+          particleCount: 45,
+          spread: 70,
+          origin: { y: 0.5 },
+          colors: celebrationColors
+        });
+      }, 600);
+    });
+  </script>
+</body>
+</html>
